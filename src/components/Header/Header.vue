@@ -1,17 +1,17 @@
 <template>
   <b-navbar toggleable="md" class="app-header d-print-none">
     <b-navbar-nav class="navbar-nav-mobile ml-auto">
-        <b-nav-text class="mr-3">
+        <!-- <b-nav-text class="mr-3">
           <b-alert class="header-alert animate__animated animate__bounceIn animate__delay-2s" dismissible v-model="showNavbarAlert">
             <i class="fa fa-info-circle mr-1"></i> Check out Light Blue Settings on the right!
           </b-alert>
-        </b-nav-text>
-        <b-nav-form class="d-sm-down-none mr-3">
+        </b-nav-text> -->
+        <!-- <b-nav-form class="d-sm-down-none mr-3">
           <b-input-group class="input-group-transparent">
             <b-input-group-text slot="prepend"><i class="la la-search"></i></b-input-group-text>
             <b-input class="input-transparent" id="search-input" placeholder="Search Dashboard" />
           </b-input-group>
-        </b-nav-form>
+        </b-nav-form> -->
         <b-nav-item-dropdown right menu-class="py-0">
           <template slot="button-content">
             <span class="avatar rounded-circle thumb-sm float-left mr-2">

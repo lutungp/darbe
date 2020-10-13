@@ -3,17 +3,17 @@
 </template>
 
 <script>
+import { mapActions, mapMutations, mapGetters, mapState } from 'vuex';
 export default {
   name: 'App',
+  methods : {
+    ...mapGetters(['isAuth']),
+  },
+
   created() {
-    const currentPath = this.$router.history.current.path;
-
-    if (window.localStorage.getItem('authenticated') === 'false') {
-      this.$router.push('/login');
-    }
-
-    if (currentPath === '/' || currentPath === '/app') {
-      this.$router.push('/app/dashboard');
+    let me = this;
+    if (!this.isAuth()) {
+      me.$router.push('/login');
     }
   },
 };

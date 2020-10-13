@@ -4,7 +4,7 @@
     :class="{sidebar: true}"
   >
     <header class="logo">
-      <router-link to="/app">Light <span class="fw-semi-bold">Blue</span></router-link>
+      <router-link to="/app">Darbe <span class="fw-semi-bold" style="color: #ffae34;">Coin</span></router-link>
     </header>
     <ul class="nav">
       <NavLink
@@ -15,84 +15,17 @@
               index="dashboard"
               isHeader
       />
-      <h5 class="navTitle">TEMPLATE</h5>
-      <NavLink
-              header="Typography"
-              link="/app/typography"
-              iconName="flaticon-list"
-              index="typography"
-              isHeader
-      />
-      <NavLink
-              header="Tables Basic"
-              link="/app/tables"
-              iconName="flaticon-equal-1"
-              index="tables"
-              isHeader
-      />
-      <NavLink
-              header="Notifications"
-              link="/app/notifications"
-              iconName="flaticon-star"
-              index="notifications"
-              isHeader
-      />
-      <NavLink
-              :activeItem="activeItem"
-              header="Components"
-              link="/app/components"
-              iconName="flaticon-network"
-              index="components"
-              :childrenLinks="[
-          { header: 'Charts', link: '/app/components/charts' },
-          { header: 'Icons', link: '/app/components/icons' },
-          { header: 'Maps', link: '/app/components/maps' },
-        ]"
-      />
+      <div v-for="element in dataSidebar" style="width: 100%;">
+        <NavLink
+            :activeItem="activeItem"
+            :header="element.header"
+            :link="element.link"
+            :iconName="element.iconName"
+            :index="element.index"
+            :childrenLinks="element.childrenLinks"
+          />
+      </div>
     </ul>
-    <h5 class="navTitle d-sm-down-none">
-      LABELS
-      <a class="actionLink">
-        <i class="la la-plus float-right" />
-      </a>
-    </h5>
-    <ul class="sidebarLabels d-sm-down-none">
-      <li>
-        <a href="#">
-          <i class="fa fa-circle text-warning mr-2" />
-          <span class="labelName">My Recent</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-circle text-gray mr-2" />
-          <span class="labelName">Starred</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-circle text-danger mr-2" />
-          <span class="labelName">Background</span>
-        </a>
-      </li>
-    </ul>
-
-    <h5 class="navTitle d-sm-down-none">
-      PROJECTS
-    </h5>
-    <div class="sidebarAlerts d-sm-down-none">
-      <b-alert
-        v-for="alert in alerts"
-        :key="alert.id"
-        class="sidebarAlert" variant="transparent"
-        show dismissible
-      >
-        <span>{{alert.title}}</span><br />
-        <b-progress class="sidebarProgress progress-xs mt-1"
-          :variant="alert.color" :value="alert.value" :max="100" />
-        <small>{{alert.footer}}</small>
-      </b-alert>
-    </div>
   </nav>
   </b-collapse>
 </template>
@@ -139,6 +72,10 @@ export default {
     ...mapState('layout', {
       sidebarOpened: state => !state.sidebarClose,
       activeItem: state => state.sidebarActiveElement,
+    }),
+
+    ...mapState('menu', {
+      dataSidebar: state => state.dataSidebar
     }),
   },
 };

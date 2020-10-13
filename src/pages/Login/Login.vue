@@ -38,20 +38,11 @@
               </span>
               Login
             </b-button>
-            <p class="widget-auth-info mt-4">
+            <br />
+            <!-- <p class="widget-auth-info mt-4">
               Don't have an account? Sign up now!
-            </p>
-            <router-link class="d-block text-center mb-4" to="login">Create an Account</router-link>
-            <div class="social-buttons">
-              <b-button variant="primary" class="social-button">
-                <i class="social-icon social-google"></i>
-                <p class="social-text">GOOGLE</p>
-              </b-button>
-              <b-button variant="success" class="social-button">
-                <i class="social-icon social-microsoft"></i>
-                <p class="social-text">MICROSOFT</p>
-              </b-button>
-            </div>
+            </p> -->
+            <!-- <router-link class="d-block text-center mb-4" to="login">Create an Account</router-link> -->
           </div>
         </form>
       </Widget>
@@ -64,7 +55,7 @@
 
 <script>
 import Widget from '@/components/Widget/Widget';
-
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'LoginPage',
   components: { Widget },
@@ -73,19 +64,26 @@ export default {
       errorMessage: null,
     };
   },
+  computed: {
+    ...mapGetters(['isAuth']),
+  },
   methods: {
+    ...mapActions('auth', ['submit']),
     login() {
-      const email = this.$refs.email.value;
-      const password = this.$refs.password.value;
+      let data = {
+        email : this.$refs.email.value,
+        password : this.$refs.password.value
+      };
 
-      if (email.length !== 0 && password.length !== 0) {
-        window.localStorage.setItem('authenticated', true);
-        this.$router.push('/app/dashboard');
-      }
+      this.submit(data).then(response => {
+          if (this.isAuth) {
+              this.$router.push('/app/dashboard');
+          }
+      });
     },
   },
   created() {
-    if (window.localStorage.getItem('authenticated') === 'true') {
+    if (this.isAuth) {
       this.$router.push('/app/dashboard');
     }
   },

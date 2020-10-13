@@ -1,0 +1,44 @@
+@import './../styles/app';
+
+.darbe-container {
+    .row {
+        div {
+            .btn-primary {
+                color: #fff;
+                background-color: #333a66 !important;
+                border-color: #6c7a8a !important;
+            }
+        }
+    }
+}
+
+.form-control {
+    color: #fff !important;
+}
+
+.multiselect__tags, .multiselect__input {
+    border: none;
+    background: #0b1227;
+    background-color: #0b1227;
+}
+
+.multiselect__input, .multiselect__single {
+    border: none;
+    background: #0b1227;
+    background-color: #0b1227;
+    color: #fff;
+}
+
+.multiselect__input:hover, .multiselect__single:hover {
+    text-decoration: none;
+    border: none;
+    background: #0b1227;
+    background-color: #0b1227;
+}
+
+.multiselect__input:focus, .multiselect__single:focus {
+    text-decoration: none;
+    border: none;
+    background: #0b1227;
+    background-color: #0b1227;
+}
